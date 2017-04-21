@@ -38,6 +38,11 @@ Travis CI 是一个开源的的在线分布式持续集成服务。
 `$ npm install -g hexo-cli`  
 
 # 初始化和配置 Hexo
+> 这里其实遇到了很多问题
+
+https://github.com/iissnan/hexo-theme-next/issues/328
+http://w4lle.github.io/2016/06/06/Hexo-themes/
+http://aoxuis.me/post/2013-08-06-git-subtree
 
 
 # 启用要构建的项目
