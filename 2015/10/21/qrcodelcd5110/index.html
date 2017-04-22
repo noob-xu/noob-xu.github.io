@@ -1,0 +1,768 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="树莓派,QRcode,Python,PIL," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="用纸盒给树莓派做了个新家，装上了「显示器」 最近好烦，不想记录过程了代码↓↓↓12345678910111213141516171819202122232425262728293031323334353637383940414243444546#coding=utf-8#这些不用管import timeimport Adafruit_Nokia_LCD as LCDimport Adafruit_">
+<meta name="keywords" content="树莓派,QRcode,Python,PIL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="生成QR显示到nokia LCD_5110">
+<meta property="og:url" content="https://nullxu.github.io/2015/10/21/qrcodelcd5110/index.html">
+<meta property="og:site_name" content="noob-xu">
+<meta property="og:description" content="用纸盒给树莓派做了个新家，装上了「显示器」 最近好烦，不想记录过程了代码↓↓↓12345678910111213141516171819202122232425262728293031323334353637383940414243444546#coding=utf-8#这些不用管import timeimport Adafruit_Nokia_LCD as LCDimport Adafruit_">
+<meta property="og:image" content="http://7xnf9d.com1.z0.glb.clouddn.com/IMG_20151021_200513.jpg">
+<meta property="og:image" content="http://7xnf9d.com1.z0.glb.clouddn.com/IMG_20151021_200352.jpg">
+<meta property="og:image" content="http://7xnf9d.com1.z0.glb.clouddn.com/IMG_20151021_200541.jpg">
+<meta property="og:updated_time" content="2017-04-22T13:59:41.546Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="生成QR显示到nokia LCD_5110">
+<meta name="twitter:description" content="用纸盒给树莓派做了个新家，装上了「显示器」 最近好烦，不想记录过程了代码↓↓↓12345678910111213141516171819202122232425262728293031323334353637383940414243444546#coding=utf-8#这些不用管import timeimport Adafruit_Nokia_LCD as LCDimport Adafruit_">
+<meta name="twitter:image" content="http://7xnf9d.com1.z0.glb.clouddn.com/IMG_20151021_200513.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://nullxu.github.io/2015/10/21/qrcodelcd5110/"/>
+
+
+
+
+
+  <title> 生成QR显示到nokia LCD_5110 | noob-xu </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">noob-xu</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://nullxu.github.io/2015/10/21/qrcodelcd5110/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="noob-xu">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                生成QR显示到nokia LCD_5110
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-10-21T12:34:27+00:00">
+                2015-10-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/10/21/qrcodelcd5110/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2015/10/21/qrcodelcd5110/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="用纸盒给树莓派做了个新家，装上了「显示器」"><a href="#用纸盒给树莓派做了个新家，装上了「显示器」" class="headerlink" title="用纸盒给树莓派做了个新家，装上了「显示器」"></a>用纸盒给树莓派做了个新家，装上了「显示器」</h3><p><img src="http://7xnf9d.com1.z0.glb.clouddn.com/IMG_20151021_200513.jpg" alt=""><br><img src="http://7xnf9d.com1.z0.glb.clouddn.com/IMG_20151021_200352.jpg" alt=""><br><img src="http://7xnf9d.com1.z0.glb.clouddn.com/IMG_20151021_200541.jpg" alt=""></p>
+<h3 id="最近好烦，不想记录过程了代码↓↓↓"><a href="#最近好烦，不想记录过程了代码↓↓↓" class="headerlink" title="最近好烦，不想记录过程了代码↓↓↓"></a>最近好烦，不想记录过程了代码↓↓↓</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#coding=utf-8</span></div><div class="line"><span class="comment">#这些不用管</span></div><div class="line"><span class="keyword">import</span> time</div><div class="line"><span class="keyword">import</span> Adafruit_Nokia_LCD <span class="keyword">as</span> LCD</div><div class="line"><span class="keyword">import</span> Adafruit_GPIO.SPI <span class="keyword">as</span> SPI</div><div class="line"><span class="keyword">import</span> Image</div><div class="line"><span class="keyword">import</span> ImageDraw</div><div class="line"><span class="keyword">import</span> ImageFont</div><div class="line"><span class="keyword">import</span> qrcode</div><div class="line"></div><div class="line">DC = <span class="number">23</span></div><div class="line">RST = <span class="number">24</span></div><div class="line">SPI_PORT = <span class="number">0</span></div><div class="line">SPI_DEVICE = <span class="number">0</span></div><div class="line">disp = LCD.PCD8544(DC, RST, spi=SPI.SpiDev(SPI_PORT, SPI_DEVICE, max_speed_hz=<span class="number">4000000</span>))</div><div class="line">disp.begin(contrast=<span class="number">60</span>)</div><div class="line">disp.clear()</div><div class="line">disp.display()</div><div class="line"></div><div class="line">qr = qrcode.QRCode(     </div><div class="line">    version=<span class="number">1</span>,     <span class="comment">#值为1~40的整数，控制二维码的大小（最小值是1，是个12×12的矩阵）。 如果想让程序自动确定，将值设置为 None 并使用 fit 参数即可。</span></div><div class="line">    error_correction=qrcode.constants.ERROR_CORRECT_L,    									 <span class="comment">#控制二维码的错误纠正功能。可取值下列4个常量。</span></div><div class="line">    box_size=<span class="number">4</span>,     <span class="comment">#控制二维码中每个小格子包含的像素数。										#ERROR_CORRECT_L：大约7%或更少的错误能被纠正。</span></div><div class="line">    border=<span class="number">0</span>, 	<span class="comment">#控制边框（二维码与图片边界的距离）包含的格子数（默认为4，是相关标准规定的最小值）		#ERROR_CORRECT_M（默认）：大约15%或更少的错误能被纠正。</span></div><div class="line">) 																								<span class="comment">#ROR_CORRECT_H：大约30%或更少的错误能被纠正。</span></div><div class="line">qr.add_data(<span class="string">u'http://raspi.picp.net'</span>) </div><div class="line">qr.make(fit=<span class="keyword">True</span>)  </div><div class="line">img1 = qr.make_image()</div><div class="line"><span class="comment">#img.save('qr.png')</span></div><div class="line"></div><div class="line">img=Image.open(<span class="string">"blank.png"</span>)</div><div class="line">img.paste(img1.resize((<span class="number">48</span>,<span class="number">48</span>)),(<span class="number">36</span>,<span class="number">0</span>))<span class="comment">#将img1粘贴到img的18,0处</span></div><div class="line">img.save(<span class="string">"out.png"</span>)</div><div class="line"></div><div class="line">image = Image.open(<span class="string">'out.png'</span>).resize((LCD.LCDWIDTH, LCD.LCDHEIGHT), Image.ANTIALIAS).convert(<span class="string">'1'</span>)</div><div class="line"></div><div class="line">font = ImageFont.truetype(<span class="string">'/home/pi/Desktop/pi/5110/font/Minecraftia-Regular.ttf'</span>, <span class="number">8</span>)</div><div class="line">fontc = ImageFont.truetype(<span class="string">'/usr/share/fonts/truetype/wqy/wqy-microhei.ttc'</span>, <span class="number">12</span>)</div><div class="line">draw = ImageDraw.Draw(image)</div><div class="line">draw.text((<span class="number">0</span>,<span class="number">0</span>), <span class="string">u'卓大师'</span>, font=fontc)</div><div class="line">draw.text((<span class="number">0</span>,<span class="number">11</span>), <span class="string">u'的树莓'</span>, font=fontc)</div><div class="line">draw.text((<span class="number">0</span>,<span class="number">23</span>), <span class="string">u'派小站'</span>, font=fontc)</div><div class="line">draw.text((<span class="number">0</span>,<span class="number">35</span>), <span class="string">u'→_→'</span>, font=fontc)</div><div class="line"><span class="comment">#输出</span></div><div class="line">disp.image(image)</div><div class="line">disp.display()</div></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/树莓派/" rel="tag"># 树莓派</a>
+          
+            <a href="/tags/QRcode/" rel="tag"># QRcode</a>
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+            <a href="/tags/PIL/" rel="tag"># PIL</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/21/Travis-CI_Builds_Hexo/" rel="next" title="使用 Travis CI 自动部署 Hexo">
+                <i class="fa fa-chevron-left"></i> 使用 Travis CI 自动部署 Hexo
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/10/14/IPaddress/" rel="prev" title="用Python获取外网IP并提交到花生壳，邮件通知">
+                用Python获取外网IP并提交到花生壳，邮件通知 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="hypercomments_widget"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/avatar.gif"
+               alt="xu" />
+          <p class="site-author-name" itemprop="name">xu</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/noob-xu" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#用纸盒给树莓派做了个新家，装上了「显示器」"><span class="nav-number">1.</span> <span class="nav-text">用纸盒给树莓派做了个新家，装上了「显示器」</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最近好烦，不想记录过程了代码↓↓↓"><span class="nav-number">2.</span> <span class="nav-text">最近好烦，不想记录过程了代码↓↓↓</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xu</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+		<script type="text/javascript">
+		_hcwp = window._hcwp || [];
+
+		_hcwp.push({widget:"Bloggerstream", widget_id: 89982, selector:".hc-comment-count", label: "{\%COUNT%\}" });
+
+		
+		_hcwp.push({widget:"Stream", widget_id: 89982, xid: "2015/10/21/qrcodelcd5110/"});
+		
+
+		(function() {
+		if("HC_LOAD_INIT" in window)return;
+		HC_LOAD_INIT = true;
+		var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+		var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+		hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/89982/"+lang+"/widget.js";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hcc, s.nextSibling);
+		})();
+		</script>
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
