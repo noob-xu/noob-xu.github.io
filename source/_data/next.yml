@@ -46,7 +46,7 @@ index_with_subtitle: false
 menu:
   home: /
   categories: /categories
-  #about: /about
+  about: /about
   archives: /archives
   tags: /tags
   #sitemap: /sitemap.xml
@@ -312,7 +312,7 @@ disqus:
   count: true
 
 # Hypercomments
-#hypercomments_id:
+hypercomments_id: 89982
 
 # Gentie productKey
 #gentie_productKey:
