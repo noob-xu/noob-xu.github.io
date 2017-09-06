@@ -5,4 +5,6 @@ type: "about"
 ---
 build status ![Travis status](https://api.travis-ci.org/noob-xu/noob-xu.github.io.svg?branch=hexo)
 
-## Hexo Blog ...
+## My Project   
+[RedisQueue](https://github.com/noob-xu/redque)
+
